@@ -1,6 +1,6 @@
 # miney_toolbox
 
-Toolbox to create all sorts of shapes in Minetest (Minecraft clone) via Miney.
+Toolbox to create all sorts of shapes in [Minetest](https://www.minetest.net/) (Minecraft clone) via [Miney](https://pypi.org/project/miney/).
 
 So far you can place flat circles, spheres, rectangles and lines at the position of the selected player with a selected material. More to come.
 
