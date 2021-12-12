@@ -24,12 +24,12 @@ def line( mt, pos, start, end, material ):
 
     start_to_target_vector = end - start
     error_dimensions = list(range(len(array.shape)))
-    print("array.shape ", array.shape)
-    print("error_dimension ", error_dimensions)
+    #print("array.shape ", array.shape)
+    #print("error_dimension ", error_dimensions)
     steepest_dimension = error_dimensions.pop(np.argmax(np.abs(start_to_target_vector)))
-    print("start_to_target_vector", start_to_target_vector, "  error_dimensions", error_dimensions)
+    #print("start_to_target_vector", start_to_target_vector, "  error_dimensions", error_dimensions)
     error_per_step = (start_to_target_vector / np.abs(start_to_target_vector[steepest_dimension])) * step_size
-    print("Error per step:", error_per_step)
+    #print("Error per step:", error_per_step)
     
     error = np.modf(start / step_size)[0]
     start_voxel = np.around(start / step_size, decimals=0)
@@ -38,9 +38,9 @@ def line( mt, pos, start, end, material ):
     #voxels = [start_voxel]
     positions.append( conv.ntom( pos + start_voxel[0]*vx + start_voxel[1]*vy + start_voxel[2]*vz ) )
 
-    print("Error at start:", error)
+    #print("Error at start:", error)
     current_voxel = np.copy(start_voxel)
-    print(current_voxel)
+    #print(current_voxel)
     while True:
         np.add(error, error_per_step / step_size, out=error)
         #print("i:", current_voxel[steepest_dimension], "Error:", error)
