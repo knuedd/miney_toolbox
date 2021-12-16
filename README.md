@@ -8,4 +8,8 @@ You can also combine shapes, see the snowman example.
 
 The line procedure was adopted from the [recent c't article "Bresenham 3D"](https://www.heise.de/select/ct/2021/26/2130115371338876887) in the German magazine c't and their [implementation](https://github.com/pinae/BresenhamLidar).
 
-![Minetest screenshot](img/screenshot.png)
+![Minetest screenshot](img/screenshot.jpg)
+
+Another example demonstrates a simple vector addition (orange= yellow + purple):
+
+![Vector example](img/screenshot_vec.jpg)
