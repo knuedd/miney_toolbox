@@ -35,10 +35,16 @@ player= mt.player[playername]
 
 if len(sys.argv) <= 2:
 
-    print( "pos ", mtb.pos_as_int(player), ", dir ", player.look_horizontal, 
-        ", quad: ", mtb.quadrant( player ), ", up/down: ", player.look_vertical )
+    print( "pos ", mtb.pos_as_int(player), 
+        "\ndir ", player.look_horizontal, 
+        "\nquad: ", mtb.quadrant( player ), 
+        "\nup/down: ", player.look_vertical )
 
 else: ## second arg given
     if "fly" == sys.argv[2]:
         print ( "Make player %sd fly" % playername )
         player.fly= True
+
+    if "nodes" == sys.argv[2]:
+        for node_type in mt.node.type:
+            print(node_type)
