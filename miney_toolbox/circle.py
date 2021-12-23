@@ -16,8 +16,8 @@ def circle( mt, pos, r, h, material ):
 
     midpoint= pos + h*vy
 
-    for x in range(0,r+1):
-        for z in range(0,r+1):
+    for x in range(0,int(r)+2):
+        for z in range(0,int(r)+2):
 
                 d= x*vx + z*vz
                 a= np.linalg.norm( d )
