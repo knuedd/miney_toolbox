@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+                       #!/usr/bin/python3
 
 import sys
 import math
@@ -41,28 +41,34 @@ player= mt.player[playername]
 pos= mtb.pos_as_int( player )
 material= "wool:blue"
 
-start= np.array([10,1,1])
-end=   np.array([16,1,1])
+a=20
+b=20
+c=10
+
+start= np.array([1,1,1])
+end=   np.array([1+a,1,1])
 mtb.line( mt, pos, start, end, material )
-start= np.array([16,1,1])
-end=   np.array([16,7,1])
+start= np.array([1+a,1,1])
+end=   np.array([1,1+b,1])
 mtb.line( mt, pos, start, end, material )
-start= np.array([16,7,1])
-end=   np.array([13,10,1])
+start= np.array([1,1+b,1])
+end=   np.array([1+a//2,1+b+c,1])
 mtb.line( mt, pos, start, end, material )
-start= np.array([13,10,1])
-end=   np.array([10,7,1])
+
+start= np.array([1+a//2,1+b+c,1])
+end=   np.array([1+a,1+b,1])
 mtb.line( mt, pos, start, end, material )
-start= np.array([10,7,1])
-end=   np.array([10,1,1])
+start= np.array([1+a,1+b,1])
+end=   np.array([1,1,1])
 mtb.line( mt, pos, start, end, material )
-start= np.array([10,1,1])
-end=   np.array([16,7,1])
+start= np.array([1,1,1])
+end=   np.array([1,1+b,1])
 mtb.line( mt, pos, start, end, material )
-start= np.array([16,7,1])
-end=   np.array([10,7,1])
+
+start= np.array([1,1+b,1])
+end=   np.array([1+a,1+b,1])
 mtb.line( mt, pos, start, end, material )
-start= np.array([10,7,1])
-end=   np.array([16,1,1])
+start= np.array([1+a,1+b,1])
+end=   np.array([1+a,1,1])
 mtb.line( mt, pos, start, end, material )
 
