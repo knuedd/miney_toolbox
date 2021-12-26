@@ -42,29 +42,35 @@ player= mt.player[playername]
 pos= mtb.pos_as_int( player )
 material= "wool:black"
 
+a=12
+b=12
+c=6
+
 start= np.array([1,1,1])
-end=   np.array([9,1,1])
+end=   np.array([1+a,1,1])
 mtb.line( mt, pos, start, end, material )
-start= np.array([9,1,1])
-end=   np.array([1,10,1])
+start= np.array([1+a,1,1])
+end=   np.array([1,1+b,1])
 mtb.line( mt, pos, start, end, material )
-start= np.array([1,10,1])
-end=   np.array([5,14,1])
+start= np.array([1,1+b,1])
+end=   np.array([1+a//2,1+b+c,1])
 mtb.line( mt, pos, start, end, material )
-start= np.array([5,14,1])
-end=   np.array([9,10,1])
+
+start= np.array([1+a//2,1+b+c,1])
+end=   np.array([1+a,1+b,1])
 mtb.line( mt, pos, start, end, material )
-start= np.array([9,10,1])
-end=   np.array([1,10,1])
-mtb.line( mt, pos, start, end, material )
-start= np.array([1,10,1])
+start= np.array([1+a,1+b,1])
 end=   np.array([1,1,1])
 mtb.line( mt, pos, start, end, material )
 start= np.array([1,1,1])
-end=   np.array([9,10,1])
+end=   np.array([1,1+b,1])
 mtb.line( mt, pos, start, end, material )
-start= np.array([9,10,1])
-end=   np.array([9,1,1])
+
+start= np.array([1,1+b,1])
+end=   np.array([1+a,1+b,1])
+mtb.line( mt, pos, start, end, material )
+start= np.array([1+a,1+b,1])
+end=   np.array([1+a,1,1])
 mtb.line( mt, pos, start, end, material )
 
 
