@@ -1,4 +1,4 @@
-                       #!/usr/bin/python3
+#!/usr/bin/python3
 
 import sys
 import math
@@ -45,30 +45,45 @@ a=20
 b=20
 c=10
 
-start= np.array([1,1,1])
-end=   np.array([1+a,1,1])
-mtb.line( mt, pos, start, end, material )
-start= np.array([1+a,1,1])
-end=   np.array([1,1+b,1])
-mtb.line( mt, pos, start, end, material )
-start= np.array([1,1+b,1])
-end=   np.array([1+a//2,1+b+c,1])
-mtb.line( mt, pos, start, end, material )
+#start= np.array([1,1,1])
+#end=   np.array([1+a,1,1])
+#mtb.line( mt, pos, start, end, material )
+#start= np.array([1+a,1,1])
+#end=   np.array([1,1+b,1])
+#mtb.line( mt, pos, start, end, material )
+#start= np.array([1,1+b,1])
+#end=   np.array([1+a//2,1+b+c,1])
+#mtb.line( mt, pos, start, end, material )
 
-start= np.array([1+a//2,1+b+c,1])
-end=   np.array([1+a,1+b,1])
-mtb.line( mt, pos, start, end, material )
-start= np.array([1+a,1+b,1])
-end=   np.array([1,1,1])
-mtb.line( mt, pos, start, end, material )
-start= np.array([1,1,1])
-end=   np.array([1,1+b,1])
-mtb.line( mt, pos, start, end, material )
+#start= np.array([1+a//2,1+b+c,1])
+#end=   np.array([1+a,1+b,1])
+#mtb.line( mt, pos, start, end, material )
+#start= np.array([1+a,1+b,1])
+#end=   np.array([1,1,1])
+#mtb.line( mt, pos, start, end, material )
+#start= np.array([1,1,1])
+#end=   np.array([1,1+b,1])
+#mtb.line( mt, pos, start, end, material )
 
-start= np.array([1,1+b,1])
-end=   np.array([1+a,1+b,1])
-mtb.line( mt, pos, start, end, material )
-start= np.array([1+a,1+b,1])
-end=   np.array([1+a,1,1])
-mtb.line( mt, pos, start, end, material )
+#start= np.array([1,1+b,1])
+#end=   np.array([1+a,1+b,1])
+#mtb.line( mt, pos, start, end, material )
+#start= np.array([1+a,1+b,1])
+#end=   np.array([1+a,1,1])
+#mtb.line( mt, pos, start, end, material )
+
+polygon= []
+polygon.append( [1,1,1] )
+polygon.append( [1+a,1,1] )
+polygon.append( [1,1+b,1] )
+polygon.append( [1+a//2,1+b+c,1] )
+polygon.append( [1+a,1+b,1] )
+polygon.append( [1,1,1] )
+polygon.append( [1,1+b,1] )
+polygon.append( [1+a,1+b,1] )
+polygon.append( [1+a,1,1] )
+
+for i in range(len(polygon)-1):
+    print(i,polygon[i],polygon[i+1])
+    mtb.line( mt, pos, np.array(polygon[i]), np.array(polygon[i+1]), material )
 
