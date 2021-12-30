@@ -3,7 +3,7 @@
 import sys
 import math
 import numpy as np 
-impo7rt os
+import os
 
 import miney
 import miney_toolbox as mtb
@@ -23,7 +23,6 @@ mt = miney.Minetest("localhost",
     os.environ['MINETEST_USER'], os.environ['MINETEST_PASSWORD'] )
 
 playername= ""
-material= "wool:black"
 
 # playername must be given
 if len(sys.argv) > 1:
@@ -39,15 +38,125 @@ player= mt.player[playername]
 
 # Haus vom Nikolaus
 pos= mtb.pos_as_int( player )
-material= "wool:red"
 
+a=16
+h=8
+
+material= "wool:green"
 polygon= []
 
-polygon.append( [1,1,1] )
-polygon.append( [7,1,1] )
-polygon.append( [7,5,1] )
-polygon.append( [7,5,19] )
-polygon.append( [1,1,19] )
+# gerade strecken unten
+polygon.append( [0,0,0] )
+polygon.append( [0,a,0] )
+polygon.append( [a,a,0] )
+polygon.append( [a,0,0] )
+polygon.append( [a,0,a] )
+polygon.append( [a,a,a] )
+polygon.append( [0,a,a] )
+polygon.append( [0,0,a] )
+
+for p in polygon:
+    p[0] += 1
+    p[1] += 1
+    p[2] += 1
+
+for i in range(len(polygon)-1):
+    print(i,polygon[i],polygon[i+1])
+    mtb.line( mt, pos, np.array(polygon[i]), np.array(polygon[i+1]), material )
+
+material= "wool:yellow"
+polygon= []
+
+# diagonal hoch
+polygon.append( [0,0,a] )
+polygon.append( [a,a,a] )
+
+# Dachseite 
+polygon.append( [h,a+h,h] )
+polygon.append( [0,a,0] )
+
+for p in polygon:
+    p[0] += 1
+    p[1] += 1
+    p[2] += 1
+
+for i in range(len(polygon)-1):
+    print(i,polygon[i],polygon[i+1])
+    mtb.line( mt, pos, np.array(polygon[i]), np.array(polygon[i+1]), material )
+
+
+material= "wool:red"
+polygon= []
+
+polygon.append( [0,a,0] )
+polygon.append( [0,a,a] )
+polygon.append( [0,0,0] )
+polygon.append( [a,0,a] )
+
+for p in polygon:
+    p[0] += 1
+    p[1] += 1
+    p[2] += 1
+
+for i in range(len(polygon)-1):
+    print(i,polygon[i],polygon[i+1])
+    mtb.line( mt, pos, np.array(polygon[i]), np.array(polygon[i+1]), material )
+
+
+material= "wool:blue"
+polygon= []
+
+polygon.append( [a,0,a] )
+polygon.append( [0,0,a] )
+polygon.append( [a,0,0] )
+polygon.append( [0,0,0] )
+polygon.append( [0,a,a] )
+
+for p in polygon:
+    p[0] += 1
+    p[1] += 1
+    p[2] += 1
+
+for i in range(len(polygon)-1):
+    print(i,polygon[i],polygon[i+1])
+    mtb.line( mt, pos, np.array(polygon[i]), np.array(polygon[i+1]), material )
+
+material= "wool:orange"
+polygon= []
+
+# zweite Dachseite
+polygon.append( [0,a,a] )
+polygon.append( [h,a+h,h] )
+polygon.append( [a,a,0] )
+
+polygon.append( [a,a,a] )
+polygon.append( [a,0,0] )
+polygon.append( [0,a,0] )
+polygon.append( [0,0,a] )
+polygon.append( [0,0,0] )
+
+for p in polygon:
+    p[0] += 1
+    p[1] += 1
+    p[2] += 1
+
+for i in range(len(polygon)-1):
+    print(i,polygon[i],polygon[i+1])
+    mtb.line( mt, pos, np.array(polygon[i]), np.array(polygon[i+1]), material )
+
+
+material= "wool:black"
+polygon= []
+
+polygon.append( [0,0,0] )
+polygon.append( [a,a,0] )
+polygon.append( [a,0,a] )
+polygon.append( [0,a,a] )
+
+for p in polygon:
+    p[0] += 1
+    p[1] += 1
+    p[2] += 1
 
 for i in range(len(polygon)-1):
     print(i,polygon[i],polygon[i+1])
