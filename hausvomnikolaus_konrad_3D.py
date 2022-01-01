@@ -23,7 +23,6 @@ mt = miney.Minetest("localhost",
     os.environ['MINETEST_USER'], os.environ['MINETEST_PASSWORD'] )
 
 playername= ""
-material= "wool:black"
 
 # playername must be given
 if len(sys.argv) > 1:
@@ -40,52 +39,50 @@ player= mt.player[playername]
 # haus vom nikolaus
 
 pos= mtb.pos_as_int( player )
-material= "wool:black"
 
 a=12
-b=12
-c=6
+h= 6
 
-#start= np.array([1,1,1])
-#end=   np.array([1+a,1,1])
-#mtb.line( mt, pos, start, end, material )
-#start= np.array([1+a,1,1])
-#end=   np.array([1,1+b,1])
-#mtb.line( mt, pos, start, end, material )
-#start= np.array([1,1+b,1])
-#end=   np.array([1+a//2,1+b+c,1])
-#mtb.line( mt, pos, start, end, material )
-
-#start= np.array([1+a//2,1+b+c,1])
-#end=   np.array([1+a,1+b,1])
-#mtb.line( mt, pos, start, end, material )
-#start= np.array([1+a,1+b,1])
-#end=   np.array([1,1,1])
-#mtb.line( mt, pos, start, end, material )
-#start= np.array([1,1,1])
-#end=   np.array([1,1+b,1])
-#mtb.line( mt, pos, start, end, material )
-
-#start= np.array([1,1+b,1])
-#end=   np.array([1+a,1+b,1])
-#mtb.line( mt, pos, start, end, material )
-#start= np.array([1+a,1+b,1])
-#end=   np.array([1+a,1,1])
-#mtb.line( mt, pos, start, end, material )
-
+material= "wool:black"
 polygon= []
 
-polygon.append( [1,1,1] )
-polygon.append( [1+a,1,1] )
-polygon.append( [1,1+b,1] )
-polygon.append( [1+a//2,1+b+c,1] )
-polygon.append( [1+a,1+b,1] )
-polygon.append( [1,1,1] )
-polygon.append( [1,1+b,1] )
-polygon.append( [1+a,1+b,1] )
-polygon.append( [1+a,1,1] )
+# eine dimension ändert sich
+polygon.append( [0,0,0] )
+polygon.append( [0,a,0] )
+polygon.append( [a,a,0] )
+polygon.append( [a,0,0] )
+polygon.append( [a,0,a] )
+polygon.append( [a,a,a] )
+polygon.append( [0,a,a] )
+polygon.append( [0,0,a] )
+ 
+for i in range(len(polygon)-1):
+    print(i,polygon[i],polygon[i+1])
+    mtb.line( mt, pos, np.array(polygon[i]), np.array(polygon[i+1]), material )
+ 
+material= "wool:yellow"
+polygon= []
+ 
+# zwei dimensionen ändert sich
+polygon.append( [0,0,a] )
+polygon.append( [0,a,0] )
+polygon.append( [h,a+h,h] )
+polygon.append( [a,a,a] )
+polygon.append( [a,0,0] )
+polygon.append( [0,a,0] )
 
+for i in range(len(polygon)-1):
+    print(i,polygon[i],polygon[i+1])
+    mtb.line( mt, pos, np.array(polygon[i]), np.array(polygon[i+1]), material )
 
+material= "wool:green"
+polygon= []
+ 
+# zwei dimensionen ändert sich
+polygon.append( [0,a,0] )
+polygon.append( [0,a,a] )
+polygon.append( [0,0,0] )
+polygon.append( [a,a,0] )
 
 
 for i in range(len(polygon)-1):

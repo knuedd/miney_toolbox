@@ -13,3 +13,8 @@ The line procedure was adopted from the [recent c't article "Bresenham 3D"](http
 Another example demonstrates a simple vector addition (orange= yellow + purple):
 
 ![Vector example](img/screenshot_vec.jpg)
+
+And the House of Santa Claus (Haus vom Nikolaus) in 2D and 3D:
+
+![Haus vom Nikolaus](img/hvn.jpg)
+
