@@ -82,8 +82,50 @@ polygon= []
 polygon.append( [0,a,0] )
 polygon.append( [0,a,a] )
 polygon.append( [0,0,0] )
+
+
+for i in range(len(polygon)-1):
+    print(i,polygon[i],polygon[i+1])
+    mtb.line( mt, pos, np.array(polygon[i]), np.array(polygon[i+1]), material )
+
+material= "wool:red"
+polygon= []
+ 
+# zwei dimensionen ändert sich
+polygon.append( [0,0,0] )
+polygon.append( [a,0,a] )
+polygon.append( [0,a,a] )
+polygon.append( [h,a+h,h] )
 polygon.append( [a,a,0] )
 
+
+for i in range(len(polygon)-1):
+    print(i,polygon[i],polygon[i+1])
+    mtb.line( mt, pos, np.array(polygon[i]), np.array(polygon[i+1]), material )
+
+material= "wool:blue"
+polygon= []
+ 
+# zwei dimensionen ändert sich
+polygon.append( [a,a,0] )
+polygon.append( [a,0,a] )
+polygon.append( [0,0,a] )
+polygon.append( [a,a,a] )
+
+
+for i in range(len(polygon)-1):
+    print(i,polygon[i],polygon[i+1])
+    mtb.line( mt, pos, np.array(polygon[i]), np.array(polygon[i+1]), material )
+
+material= "wool:orange"
+polygon= []
+
+polygon.append( [a,a,a] )
+polygon.append( [a,a,0] )
+polygon.append( [0,0,0] )
+polygon.append( [0,0,a] )
+polygon.append( [a,0,0] )
+polygon.append( [0,0,0] )
 
 for i in range(len(polygon)-1):
     print(i,polygon[i],polygon[i+1])
