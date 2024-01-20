@@ -65,7 +65,7 @@ bloecke_innen= []
 # hier die Blöcke ausrechnen
 
 r=70
-t=13
+t=tiefe
 
 for y in range(0,tiefe+1):
     for x in range(-r-1,r+2):
