@@ -64,23 +64,6 @@ bloecke_innen= []
 
 # hier die Blöcke ausrechnen
 
-#r=70
-#t=tiefe
-
-#for y in range(0,tiefe+1):
-    #for x in range(-r-1,r+2):
-        #for z in range(-r-1,r+2):
-            #d=math.sqrt(x*x+z*z)
-            #if d<=r+0.5:
-                #if d<r-0.6:
-                    #bloecke_innen.append( mtb.conv.ntom(P+x*X+z*Z  -y*Y) )
-                #else:
-                    #bloecke_wand.append( mtb.conv.ntom(P+x*X+z*Z  -y*Y) )
-
-    #mt.node.set( nodes= bloecke_wand, name= material_wand )
-    #bloecke_wand= []
-    #mt.node.set( nodes= bloecke_innen, name= material_innen )
-    #bloecke_innen= []
 
 hoehe= hoehe_default
 breite=45
