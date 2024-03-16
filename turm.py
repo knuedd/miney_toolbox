@@ -26,8 +26,8 @@ playername= ""
 hoehe_turm= 22
 hoehe_dach= 10
 hoehe_etage= 5
-material_wand= "mcl_walls:stonebrick_0"
-material_dach= "mcl_nether:nether_brick"
+material_wand= "wool:orange"
+material_dach= "wool:grey"
 
 # playername must be given
 if len(sys.argv) > 1:
