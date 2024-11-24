@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 import sys
 import math
@@ -23,7 +23,7 @@ mt = miney.Minetest("localhost",
     os.environ['MINETEST_USER'], os.environ['MINETEST_PASSWORD'] )
 
 playername= ""
-material= "wool:red"
+material= "mcl_wool:red"
 
 # playername must be given
 if len(sys.argv) > 1:

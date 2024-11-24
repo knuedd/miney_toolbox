@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 import sys
 import math
@@ -19,8 +19,7 @@ if not "MINETEST_PASSWORD" in os.environ:
     exit(1)
 
 #mt = mt.Minetest( "localhost", "playername", "password", port= 29999 )
-mt = miney.Minetest("localhost", 
-    os.environ['MINETEST_USER'], os.environ['MINETEST_PASSWORD'] )
+mt = miney.Minetest("localhost", os.environ['MINETEST_USER'], os.environ['MINETEST_PASSWORD'] )
 
 playername= ""
 
@@ -42,7 +41,7 @@ pos= mtb.pos_as_int( player )
 a=16
 h=8
 
-material= "wool:green"
+material= "mcl_wool:red"
 polygon= []
 
 # gerade strecken unten

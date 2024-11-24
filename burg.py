@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 import sys
 import math
@@ -24,7 +24,7 @@ mt = miney.Minetest("localhost",
 
 playername= ""
 hoehe_default= 15
-material_wand= "mcl_walls:stonebrick_0"
+material_wand= "basic_materials:brass_block"
 material_innen= "air"
 
 # playername must be given
