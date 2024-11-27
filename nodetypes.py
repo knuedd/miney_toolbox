@@ -23,24 +23,5 @@ if not "MINETEST_PASSWORD" in os.environ:
 mt = miney.Minetest("localhost", 
     os.environ['MINETEST_USER'], os.environ['MINETEST_PASSWORD'] )
 
-print( "Players:")
-for p in mt.player:
-    print( p )
-
-if len(sys.argv) <= 1:
-    exit(0)
-
-playername= sys.argv[1]
-player= mt.player[playername]
-
-if len(sys.argv) <= 2:
-
-    print( "pos ", mtb.pos_as_int(player), 
-        "\ndir ", player.look_horizontal, 
-        "\nquad: ", mtb.quadrant( player ), 
-        "\nup/down: ", player.look_vertical )
-
-else: ## second arg given
-    if "fly" == sys.argv[2]:
-        print ( "Make player %sd fly" % playername )
-        player.fly= True
+for node_type in mt.node.type:
+    print(node_type)
