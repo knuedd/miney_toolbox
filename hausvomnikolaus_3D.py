@@ -19,7 +19,8 @@ if not "MINETEST_PASSWORD" in os.environ:
     exit(1)
 
 #mt = mt.Minetest( "localhost", "playername", "password", port= 29999 )
-mt = miney.Minetest("localhost", os.environ['MINETEST_USER'], os.environ['MINETEST_PASSWORD'] )
+mt = miney.Minetest("localhost", 
+    os.environ['MINETEST_USER'], os.environ['MINETEST_PASSWORD'] )
 
 playername= ""
 
@@ -35,29 +36,24 @@ else:
 
 player= mt.player[playername]
 
-# Haus vom Nikolaus
+# haus vom nikolaus
 pos= mtb.pos_as_int( player )
+material= "wool:blue"
 
-a=16
-h=8
+a=20
+h=10
 
-material= "wool:red"
+material= "wool:blue"
 polygon= []
-
-# gerade strecken unten
+# nur eine Dimension ändert sich pro Zug
 polygon.append( [0,0,0] )
 polygon.append( [0,a,0] )
 polygon.append( [a,a,0] )
 polygon.append( [a,0,0] )
 polygon.append( [a,0,a] )
-polygon.append( [a,a,a] )
-polygon.append( [0,a,a] )
 polygon.append( [0,0,a] )
-
-for p in polygon:
-    p[0] += 1
-    p[1] += 1
-    p[2] += 1
+polygon.append( [0,a,a] )
+polygon.append( [a,a,a] )
 
 for i in range(len(polygon)-1):
     print(i,polygon[i],polygon[i+1])
@@ -65,56 +61,14 @@ for i in range(len(polygon)-1):
 
 material= "wool:yellow"
 polygon= []
-
-# diagonal hoch
-polygon.append( [0,0,a] )
+# zwei Dimension ändern sich pro Zug
 polygon.append( [a,a,a] )
-
-# Dachseite 
+polygon.append( [a,a,0] )
 polygon.append( [h,a+h,h] )
-polygon.append( [0,a,0] )
-
-for p in polygon:
-    p[0] += 1
-    p[1] += 1
-    p[2] += 1
-
-for i in range(len(polygon)-1):
-    print(i,polygon[i],polygon[i+1])
-    mtb.line( mt, pos, np.array(polygon[i]), np.array(polygon[i+1]), material )
-
-
-material= "wool:red"
-polygon= []
-
-polygon.append( [0,a,0] )
 polygon.append( [0,a,a] )
-polygon.append( [0,0,0] )
 polygon.append( [a,0,a] )
-
-for p in polygon:
-    p[0] += 1
-    p[1] += 1
-    p[2] += 1
-
-for i in range(len(polygon)-1):
-    print(i,polygon[i],polygon[i+1])
-    mtb.line( mt, pos, np.array(polygon[i]), np.array(polygon[i+1]), material )
-
-
-material= "wool:blue"
-polygon= []
-
-polygon.append( [a,0,a] )
-polygon.append( [0,0,a] )
-polygon.append( [a,0,0] )
+polygon.append( [a,a,0] )
 polygon.append( [0,0,0] )
-polygon.append( [0,a,a] )
-
-for p in polygon:
-    p[0] += 1
-    p[1] += 1
-    p[2] += 1
 
 for i in range(len(polygon)-1):
     print(i,polygon[i],polygon[i+1])
@@ -122,41 +76,33 @@ for i in range(len(polygon)-1):
 
 material= "wool:orange"
 polygon= []
+# zwei Dimension ändern sich pro Zug
+polygon.append( [0,0,0] )
 
-# zweite Dachseite
-polygon.append( [0,a,a] )
-polygon.append( [h,a+h,h] )
-polygon.append( [a,a,0] )
-
-polygon.append( [a,a,a] )
+polygon.append( [0,0,a] )
 polygon.append( [a,0,0] )
+
+for i in range(len(polygon)-1):
+    print(i,polygon[i],polygon[i+1])
+    mtb.line( mt, pos, np.array(polygon[i]), np.array(polygon[i+1]), material )
+
+material= "wool:green"
+polygon= []
+# zwei Dimension ändern sich pro Zug
+polygon.append( [a,0,0] )
+polygon.append( [0,0,0] )
+polygon.append( [0,a,a] )
 polygon.append( [0,a,0] )
 polygon.append( [0,0,a] )
-polygon.append( [0,0,0] )
-
-for p in polygon:
-    p[0] += 1
-    p[1] += 1
-    p[2] += 1
-
-for i in range(len(polygon)-1):
-    print(i,polygon[i],polygon[i+1])
-    mtb.line( mt, pos, np.array(polygon[i]), np.array(polygon[i+1]), material )
-
-
-material= "wool:black"
-polygon= []
-
-polygon.append( [0,0,0] )
-polygon.append( [a,a,0] )
+polygon.append( [a,a,a] )
+polygon.append( [h,a+h,h] )
+polygon.append( [0,a,0] )
+polygon.append( [a,0,0] )
+polygon.append( [a,a,a] )
 polygon.append( [a,0,a] )
-polygon.append( [0,a,a] )
-
-for p in polygon:
-    p[0] += 1
-    p[1] += 1
-    p[2] += 1
+polygon.append( [0,0,0] )
 
 for i in range(len(polygon)-1):
     print(i,polygon[i],polygon[i+1])
     mtb.line( mt, pos, np.array(polygon[i]), np.array(polygon[i+1]), material )
+
