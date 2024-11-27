@@ -24,7 +24,7 @@ mt = miney.Minetest("localhost",
 
 playername= ""
 hoehe_default= 15
-material_wand= "basic_materials:brass_block"
+material_wand= "default:stone_block"
 material_innen= "air"
 
 # playername must be given

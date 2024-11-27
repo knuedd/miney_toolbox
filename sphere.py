@@ -29,6 +29,7 @@ material= "default:snowblock"
 if len(sys.argv) > 1:
     playername= sys.argv[1]
 else:
+    print( f"call as {sys.argv[0]} <playername> <radius> <up> [<material>]" )
     print( "Playername not given, exit" )
     print( "Available players are" )
     for p in mt.player:
@@ -49,7 +50,9 @@ if len(sys.argv) > 3:
     mtb.sphere( mt, mtb.pos_as_int( player ), r, h, material )
 
 else:
-    print( "Player %s" % playername )
+    print( f"call as {sys.argv[0]} {sys.argv[1]} <radius> <up> [<material>]" )
+    print( "" )
+    print( f"Info: Player {playername}" )
     print( "    Position  ", mtb.pos_as_int(player) )
     print( "    Direction ", player.look_horizontal, player.look_vertical )
     print( "    Quadrant  ", mtb.quadrant( player ) )

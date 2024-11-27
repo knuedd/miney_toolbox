@@ -23,13 +23,14 @@ mt = miney.Minetest("localhost",
     os.environ['MINETEST_USER'], os.environ['MINETEST_PASSWORD'] )
 
 playername= ""
-material= "mcl_wool:red"
+material= "wool:red"
 
 # playername must be given
 if len(sys.argv) > 1:
     playername= sys.argv[1]
 else:
     print( "Playername not given, exit" )
+    print( f"call as {sys.argv[0]} <playername> <width> <depth> <height>" )
     print( "Available players are" )
     for p in mt.player:
         print( p )
@@ -50,7 +51,9 @@ if len(sys.argv) > 3:
     mtb.box( mt, mtb.pos_as_int( player ), w, d, h, material )
 
 else:
-    print( "Player %s" % playername )
+    print( f"call as {sys.argv[0]} {sys.argv[1]} <width> <depth> <height>" )
+    print( "" )
+    print( f"Info: Player {playername}" )
     print( "    Position  ", mtb.pos_as_int(player) )
     print( "    Direction ", player.look_horizontal, player.look_vertical )
     print( "    Quadrant  ", mtb.quadrant( player ) )
