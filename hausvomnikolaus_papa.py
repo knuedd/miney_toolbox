@@ -41,7 +41,7 @@ pos= mtb.pos_as_int( player )
 a=16
 h=8
 
-material= "mcl_wool:red"
+material= "wool:red"
 polygon= []
 
 # gerade strecken unten
