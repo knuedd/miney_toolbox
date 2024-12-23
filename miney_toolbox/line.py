@@ -26,7 +26,7 @@ def line( mt, pos, start, end, material ):
     #print("start_to_target_vector", start_to_target_vector, "  error_dimensions", error_dimensions)
     error_per_step = (start_to_target_vector / np.abs(start_to_target_vector[steepest_dimension])) * step_size
     #print("Error per step:", error_per_step)
-    
+
     error = np.modf(start / step_size)[0]
     start_voxel = np.around(start / step_size, decimals=0)
     line_direction = int(start_to_target_vector[steepest_dimension] > 0) * 2 - 1
@@ -46,5 +46,18 @@ def line( mt, pos, start, end, material ):
         np.add(current_voxel, step_dir, out=current_voxel, where=step_dims)
         #print(current_voxel, "Error:", error)
         positions.append( conv.ntom( pos + current_voxel[0]*vx + current_voxel[1]*vy + current_voxel[2]*vz ) )
+
+    mt.node.set( nodes= positions, name= material )
+
+
+""" place a list of blocks with the given material, 
+expects a list of 3-dim numpy vectors """
+def set( mt, pos, listofpositions, material ):
+
+    positions = []
+
+    for p in listofpositions:
+
+        positions.append( conv.ntom(pos+p) )
 
     mt.node.set( nodes= positions, name= material )
