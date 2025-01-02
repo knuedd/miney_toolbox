@@ -5,11 +5,7 @@ import math
 import numpy as np 
 import os
 
-import miney
-import miney_toolbox as mtb
-
-if not miney.is_miney_available():
-    raise miney.MinetestRunError("Please start Minetest with the miney game")
+from miney_toolbox import MineyToolbox
 
 if not "MINETEST_USER" in os.environ:
     print("Please specific the player name in the 'MINETEST_USER' env variable.")
@@ -18,9 +14,7 @@ if not "MINETEST_PASSWORD" in os.environ:
     print("Please specific the player name in the 'MINETEST_PASSWORD' env variable.")
     exit(1)
 
-#mt = mt.Minetest( "localhost", "playername", "password", port= 29999 )
-mt = miney.Minetest("localhost", 
-    os.environ['MINETEST_USER'], os.environ['MINETEST_PASSWORD'] )
+mtb = MineyToolbox("localhost", os.environ['MINETEST_USER'], os.environ['MINETEST_PASSWORD'] )
 
 playername= ""
 
@@ -30,18 +24,16 @@ if len(sys.argv) > 1:
 else:
     print( "Playername not given, exit" )
     print( "Available players are" )
-    for p in mt.player:
+    for p in mtb.player:
         print( p )
     exit(1)
 
-player= mt.player[playername]
-
 # haus vom nikolaus
-pos= mtb.pos_as_int( player )
+pos= mtb.pos(playername) + [2,0,2]
 material= "wool:blue"
 
 a=20
-h=10
+h=a//2
 
 material= "wool:blue"
 polygon= []
@@ -57,7 +49,7 @@ polygon.append( [a,a,a] )
 
 for i in range(len(polygon)-1):
     print(i,polygon[i],polygon[i+1])
-    mtb.line( mt, pos, np.array(polygon[i]), np.array(polygon[i+1]), material )
+    mtb.line( pos, np.array(polygon[i]), np.array(polygon[i+1]), material )
 
 material= "wool:yellow"
 polygon= []
@@ -72,7 +64,7 @@ polygon.append( [0,0,0] )
 
 for i in range(len(polygon)-1):
     print(i,polygon[i],polygon[i+1])
-    mtb.line( mt, pos, np.array(polygon[i]), np.array(polygon[i+1]), material )
+    mtb.line( pos, np.array(polygon[i]), np.array(polygon[i+1]), material )
 
 material= "wool:orange"
 polygon= []
@@ -84,7 +76,7 @@ polygon.append( [a,0,0] )
 
 for i in range(len(polygon)-1):
     print(i,polygon[i],polygon[i+1])
-    mtb.line( mt, pos, np.array(polygon[i]), np.array(polygon[i+1]), material )
+    mtb.line( pos, np.array(polygon[i]), np.array(polygon[i+1]), material )
 
 material= "wool:green"
 polygon= []
@@ -104,5 +96,5 @@ polygon.append( [0,0,0] )
 
 for i in range(len(polygon)-1):
     print(i,polygon[i],polygon[i+1])
-    mtb.line( mt, pos, np.array(polygon[i]), np.array(polygon[i+1]), material )
+    mtb.line( pos, np.array(polygon[i]), np.array(polygon[i+1]), material )
 

@@ -2,6 +2,7 @@
 Miney Toolbox provides higher level functionalities on top of Miney
 """
 
+from .MineyToolbox import MineyToolbox
 from .box import box
 from .circle import circle, circle_empty
 from .conv import ntom
@@ -11,4 +12,4 @@ from .rect import rect, rect_field, rect_field_backbuffer
 from .sphere import sphere
 from .copyandpaste import read, copy, paste
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
