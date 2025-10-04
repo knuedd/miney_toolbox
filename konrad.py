@@ -19,7 +19,7 @@ try:
     with miney.Luanti("localhost", os.environ['MINETEST_USER'], os.environ['MINETEST_PASSWORD'] ) as mt:
 
         playername= ""
-        material= "mcl_wool:orange"
+        material= "mcl_wool:red"
 
         # playername must be given
         if len(sys.argv) > 1:
@@ -35,11 +35,12 @@ try:
         player= mt.players[playername]
 
         # if start and stop are not given print the players position and direction of view
-        if len(sys.argv) > 2:
+        if len(sys.argv) > 1:
 
-            a= 33
+            a= 36
             b= 12
-            c= 50
+            c= 5
+            d= 6 # Breite der Mauer
 
             if len(sys.argv) > 2:
                 a= int( sys.argv[2] )
@@ -62,57 +63,98 @@ try:
             for x in range(b+1):
                 for z in range(b+1):
 
-                    pos= playerpos + [z+a,y,x+a]
-                    nodelist.append( mtb.ntonode( pos, material ) ) # jeden Block mit diesem Befehl zum zeichnen vormerken
-                    pos= playerpos + [z-a,y,x+a]
-                    nodelist.append( mtb.ntonode( pos, material ) ) 
-                    pos= playerpos + [z+a,y,x-a]
-                    nodelist.append( mtb.ntonode( pos, material ) )
-                    pos= playerpos + [z-a,y,x-a]
-                    nodelist.append( mtb.ntonode( pos, material ) ) 
+                    for sx in [-1,1]:
 
-            for i in range(b+1):
+                        ox= 0 if sx > 0 else -1
 
-                pos= playerpos + [+a  ,y+1,+a+i]
-                nodelist.append( mtb.ntonode( pos, material ) ) 
-                pos= playerpos + [+a+b,y+1,+a+i]
-                nodelist.append( mtb.ntonode( pos, material ) ) 
-                pos= playerpos + [+a+i,y+1,+a  ]
-                nodelist.append( mtb.ntonode( pos, material ) ) 
-                pos= playerpos + [+a+i,y+1,+a+b]
-                nodelist.append( mtb.ntonode( pos, material ) ) 
+                        for sz in [-1,1]:
 
-                pos= playerpos + [-a  ,y+1,+a+i]
-                nodelist.append( mtb.ntonode( pos, material ) ) 
-                pos= playerpos + [-a+b,y+1,+a+i]
-                nodelist.append( mtb.ntonode( pos, material ) ) 
-                pos= playerpos + [-a+i,y+1,+a  ]
-                nodelist.append( mtb.ntonode( pos, material ) ) 
-                pos= playerpos + [-a+i,y+1,+a+b]
-                nodelist.append( mtb.ntonode( pos, material ) ) 
+                            oz= 0 if sz > 0 else -1
 
-                pos= playerpos + [+a  ,y+1,-a+i]
-                nodelist.append( mtb.ntonode( pos, material ) ) 
-                pos= playerpos + [+a+b,y+1,-a+i]
-                nodelist.append( mtb.ntonode( pos, material ) ) 
-                pos= playerpos + [+a+i,y+1,-a  ]
-                nodelist.append( mtb.ntonode( pos, material ) ) 
-                pos= playerpos + [+a+i,y+1,-a+b]
-                nodelist.append( mtb.ntonode( pos, material ) ) 
-
-                pos= playerpos + [-a  ,y+1,-a+i]
-                nodelist.append( mtb.ntonode( pos, material ) ) 
-                pos= playerpos + [-a+b,y+1,-a+i]
-                nodelist.append( mtb.ntonode( pos, material ) ) 
-                pos= playerpos + [-a+i,y+1,-a  ]
-                nodelist.append( mtb.ntonode( pos, material ) ) 
-                pos= playerpos + [-a+i,y+1,-a+b]
-                nodelist.append( mtb.ntonode( pos, material ) ) 
-
+                            pos= playerpos + [sx*(a-x)+ox,y,sz*(a-z)+oz]
+                            nodelist.append( mtb.ntonode( pos, material ) ) # jeden Block mit diesem Befehl zum zeichnen vormerken
             mt.nodes.set( nodelist)
+            nodelist= []
+
+            for y in range(c):
+                for i in range(b+1):
+
+                    for sx in [-1,1]:
+
+                        ox= 0 if sx > 0 else -1
+
+                        for sz in [-1,1]:
+
+                            oz= 0 if sz > 0 else -1
+
+                            pos= playerpos + [sx*(a-i)+ox,y,sz*a    +oz]
+                            nodelist.append( mtb.ntonode( pos, material ) ) 
+                            pos= playerpos + [sx*(a-i)+ox,y,sz*(a-b)+oz]
+                            nodelist.append( mtb.ntonode( pos, material ) ) 
+                            pos= playerpos + [sx*a    +ox,y,sz*(a-i)+oz]
+                            nodelist.append( mtb.ntonode( pos, material ) ) 
+                            pos= playerpos + [sx*(a-b)+ox,y,sz*(a-i)+oz]
+                            nodelist.append( mtb.ntonode( pos, material ) ) 
+
+                mt.nodes.set( nodelist)
+                nodelist= []
+
+            for y in range(1):
+
+                for sx in [-1,1]:
+
+                    ox= 0 if sx > 0 else -1
+
+                    for sz in [-1,1]:
+
+                        oz= 0 if sz > 0 else -1
+
+                        e= 2 # Mauer einrücken von der Außenkante des Turms aus gezählt
+                        for i in range(1,a-b):
+
+                            pos= playerpos + [sx*(a-b-i)+ox,y,sz*(a-e)+oz]#x,y,z
+                            nodelist.append( mtb.ntonode( pos, material ) ) 
+                            pos= playerpos + [sx*(a-b-i)+ox,y,sz*(a-e-d)+oz]
+                            nodelist.append( mtb.ntonode( pos, material ) ) 
+                            
+                            pos= playerpos + [sx*(a-e)+ox,y,sz*(a-b-i)+oz]
+                            nodelist.append( mtb.ntonode( pos, material ) ) 
+                            pos= playerpos + [sx*(a-e-d)+ox,y,sz*(a-b-i)+oz]
+                            nodelist.append( mtb.ntonode( pos, material ) ) 
+
+                            if 0 == i%6:
+                                for ee in range(3):
+                                    e += 1
+
+                                    pos= playerpos + [sx*(a-b-i)+ox,y,sz*(a-e)+oz]
+                                    nodelist.append( mtb.ntonode( pos, material ) ) 
+                                    pos= playerpos + [sx*(a-b-i)+ox,y,sz*(a-e-d)+oz]
+                                    nodelist.append( mtb.ntonode( pos, material ) ) 
+
+                                    pos= playerpos + [sx*(a-e)+ox,y,sz*(a-b-i)+oz]
+                                    nodelist.append( mtb.ntonode( pos, material ) ) 
+                                    pos= playerpos + [sx*(a-e-d)+ox,y,sz*(a-b-i)+oz]
+                                    nodelist.append( mtb.ntonode( pos, material ) ) 
+
+                        i = a-b
+
+                        pos= playerpos + [sx*(a-b-i)+ox,y,sz*(a-e)+oz]
+                        nodelist.append( mtb.ntonode( pos, material ) ) 
+                        pos= playerpos + [sx*(a-b-i)+ox,y,sz*(a-e-d)+oz]
+                        nodelist.append( mtb.ntonode( pos, material ) ) 
+
+                        pos= playerpos + [sx*(a-e)+ox,y,sz*(a-b-i)+oz]
+                        nodelist.append( mtb.ntonode( pos, material ) ) 
+                        pos= playerpos + [sx*(a-e-d)+ox,y,sz*(a-b-i)+oz]
+                        nodelist.append( mtb.ntonode( pos, material ) ) 
+
+
+                        mt.nodes.set( nodelist)
+                        nodelist= []
+
 
         else:
-            print( f"call as {sys.argv[0]} {sys.argv[1]} <width> <depth> <height>" )
+            print( f"call as {sys.argv[0]} {sys.argv[1]} [a] [b] [c]" )
             print( "" )
             print( f"Info: Player {playername}" )
             print( "    Position  ", mtb.pos_as_int(player) )
