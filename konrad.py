@@ -37,10 +37,11 @@ try:
         # if start and stop are not given print the players position and direction of view
         if len(sys.argv) > 1:
 
-            a= 36
-            b= 12
-            c= 5
+            a= 36 # Gesamtbreite /2
+            b= 12 # Turmbreite
+            c= 10 # Höhe des Turms
             d= 6 # Breite der Mauer
+            e= 5 # Höhe der Mauer
 
             if len(sys.argv) > 2:
                 a= int( sys.argv[2] )
@@ -59,7 +60,7 @@ try:
             playerpos= mtb.pos_as_int(player)
 
             y= -1
-
+                        #turm
             for x in range(b+1):
                 for z in range(b+1):
 
@@ -98,8 +99,8 @@ try:
 
                 mt.nodes.set( nodelist)
                 nodelist= []
-
-            for y in range(1):
+                                #Mauer
+            for y in range(e):
 
                 for sx in [-1,1]:
 
