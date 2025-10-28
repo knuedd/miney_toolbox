@@ -48,15 +48,7 @@ with miney.Luanti("localhost", os.environ['MINETEST_USER'], os.environ['MINETEST
 
         playerpos= mtb.pos_as_int(player)
 
-        for x in range(w):
-            for z in range(d):
-                for y in range(h):
-
-                    pos= playerpos + [x,-y,z]
-                    print(pos)
-                    nodelist.append( mtb.ntonode( pos, material ) ) 
-
-        mt.nodes.set( nodelist )
+        mtb.box( mt, playerpos, w, d, h, material )
 
     else:
         print( f"call as {sys.argv[0]} {sys.argv[1]} <width> <depth> <height>" )
