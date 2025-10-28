@@ -2,7 +2,7 @@ import math
 import numpy as np 
 import time
 
-from miney_toolbox import conv
+import miney_toolbox as mtb
 
 """ create a line from 'start' to 'end' the given 'material',
 relative to the given position 'pos'
@@ -31,11 +31,11 @@ def line( mt, pos, start, end, material ):
     start_voxel = np.around(start / step_size, decimals=0)
     line_direction = int(start_to_target_vector[steepest_dimension] > 0) * 2 - 1
 
-    positions.append( conv.ntom( pos + start_voxel[0]*vx + start_voxel[1]*vy + start_voxel[2]*vz ) )
+    positions.append( mtb.ntonode( ( pos + start_voxel[0]*vx + start_voxel[1]*vy + start_voxel[2]*vz ), material ) )
 
     #print("Error at start:", error)
     current_voxel = np.copy(start_voxel)
-    #print(current_voxel)
+    print(current_voxel)
     for i in range(length_in_steepest_dimension):
         np.add(error, error_per_step / step_size, out=error)
         #print("i:", current_voxel[steepest_dimension], "Error:", error)
@@ -44,10 +44,10 @@ def line( mt, pos, start, end, material ):
         #print("step_dims & step_dir", step_dims, step_dir)
         np.subtract(error, step_dir, out=error, where=step_dims)
         np.add(current_voxel, step_dir, out=current_voxel, where=step_dims)
-        #print(current_voxel, "Error:", error)
-        positions.append( conv.ntom( pos + current_voxel[0]*vx + current_voxel[1]*vy + current_voxel[2]*vz ) )
+        print(current_voxel, "Error:", error)
+        positions.append( mtb.ntonode( ( pos + current_voxel[0]*vx + current_voxel[1]*vy + current_voxel[2]*vz ), material ) )
 
-    mt.node.set( nodes= positions, name= material )
+    mt.nodes.set( positions )
 
 
 """ place a list of blocks with the given material, 

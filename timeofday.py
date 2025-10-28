@@ -14,8 +14,6 @@ if not "MINETEST_PASSWORD" in os.environ:
     print("Please specific the player name in the 'MINETEST_PASSWORD' env variable.")
     exit(1)
 
-#mt = mt.Minetest( "localhost", "playername", "password", port= 29999 )
-
 try:
     with miney.Luanti("localhost", os.environ['MINETEST_USER'], os.environ['MINETEST_PASSWORD'] ) as mt:
 
